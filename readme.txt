@@ -55,7 +55,7 @@ Like every other Wordpress plugin! :)
 	
 == Screenshots ==
 
-There is nothing to see here.
+1. The widget in action.
 
 == Changelog ==
 
