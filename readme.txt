@@ -40,6 +40,8 @@ etc...
 	 
 Fork away: https://github.com/ethanpil/wp-links-with-icons-widget
 
+This WordPress plugin is brought to you by [Los Angeles Web Design](https://www.angeleswebdesign.com "Los Angeles Web Design WordPress Experts")
+
 Future Plans:
 
 1. Display the size of selected image in the widget under the preview
