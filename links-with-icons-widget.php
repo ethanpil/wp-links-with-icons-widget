@@ -4,12 +4,12 @@ Plugin URI: http://angeleswebdesign.com
 Description: A widget that lists links with icons.
 Author: Ethan Piliavin
 Author URI: http://piliavin.com
-Version: 1.2
+Version: 1.2.1
 */
 
 class wLWI extends WP_Widget {
 
-	const VERSION = '1.2.0';
+	const VERSION = '1.2.1';
 
 	function __construct(){
 		$options = array(
@@ -68,6 +68,7 @@ class wLWI extends WP_Widget {
 				$target = 'iT'.$count;
 				$link = 'iLink'.$count;
 				$name = 'iName'.$count;
+				$show = 'iShow'.$count;
 				$icon = 'iIcon'.$count;
 				$nofollow = 'iFollow'.$count;				
 				$alt = 'iAlt'.$count;
@@ -101,6 +102,41 @@ class wLWI extends WP_Widget {
 				<input class="widefat" style="background:#fff;" id="<?php echo $this->get_field_id($name);?>" name="<?php echo $this->get_field_name($name);?>" value="<?php if(isset($$name)) echo esc_attr($$name);?>"/>
 			</p>
 			<!-- /Link Text -->
+			
+			<!-- Show Option: -->
+			<?php
+			$imagetext_sel = '';
+			$image_sel = '';
+			$text_sel = '';
+			if(isset($$show)) {
+				switch($$show) {
+					case 'text':
+						$imagetext_sel = '';
+						$image_sel = '';
+						$text_sel = 'selected="selected"';
+					break;
+					case 'image':
+						$imagetext_sel = '';
+						$image_sel = 'selected="selected"';
+						$text_sel = '';
+					break;
+					default:
+						$imagetext_sel = 'selected="selected"';
+						$image_sel = '';
+						$text_sel = '';
+					break;
+				}
+			}
+			?>
+			<p>
+				<label for="<?php echo $this->get_field_id($show);?>">Show: </label>
+				<select id="<?php echo $this->get_field_id($show);?>" name="<?php echo $this->get_field_name($show);?>">
+					<option value="imagetext" <?php echo $imagetext_sel; ?>>Image and Text</option>
+					<option value="image" <?php echo $image_sel; ?>>Image only</option>
+					<option value="text" <?php echo $text_sel; ?>>Text only</option>
+				</select>
+			</p>
+			<!-- /Show Option: -->
 			
 			<!-- Image ALT Attribute: -->
 			<p>
@@ -141,6 +177,7 @@ class wLWI extends WP_Widget {
 			$target = 'iT'.$count;
 			$link = 'iLink'.$count;
 			$name = 'iName'.$count;
+			$show = 'iShow'.$count;
 			$icon = 'iIcon'.$count;
 			$nofollow = 'iFollow'.$count;	
 			$alt = 'iAlt'.$count;
@@ -173,7 +210,14 @@ class wLWI extends WP_Widget {
 			//Parse URL for proper output in HTTP or HTTPS environment
 			$imgurl = parse_url($$icon);
 			$imgsrc=$imgurl["host"].$imgurl["path"];
-			echo '<li class="link_with_icon"><img src="//'.$imgsrc.'" alt="'.esc_attr($$alt).'"><a '.$fol.$tar.'href="'.esc_attr($$link).'">'.esc_attr($$name).'</a></li>';
+			echo '<li class="link_with_icon"><a '.$fol.$tar.'href="'.esc_attr($$link).'">';
+			if (preg_match('/image/i',$$show)>0) {
+				echo '<img src="//'.$imgsrc.'" alt="'.esc_attr($$alt).'">';
+			}
+			if (preg_match('/text/i',$$show)>0) {
+				echo '<span>'.esc_attr($$name).'</span>';
+			}
+			echo '</a></li>';
 		}
 
 		echo '</ul>';
