@@ -4,12 +4,12 @@ Plugin URI: http://angeleswebdesign.com
 Description: A widget that lists links with icons.
 Author: Ethan Piliavin
 Author URI: http://piliavin.com
-Version: 1.2.1
+Version: 1.2
 */
 
 class wLWI extends WP_Widget {
 
-	const VERSION = '1.2.1';
+	const VERSION = '1.2';
 
 	function __construct(){
 		$options = array(
