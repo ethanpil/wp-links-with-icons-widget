@@ -2,7 +2,7 @@
 Contributors: ethanpil
 Tags: widget, widgets, link widget, icons, link with icon, icon link, links with icons, link, icon, link icon, link image, image, uploader, widget image, icon and link, nofollow
 Requires at least: 3.0
-Tested up to: 3.8
+Tested up to: 4.4.1
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -68,6 +68,10 @@ Like every other Wordpress plugin! :)
 2. Example Widget Output
 
 == Changelog ==
+
+= 1.2 =
+
+* Added <span> tag to text for additional CSS styling flexibility (thx: github.com/morfie78)
 
 = 1.1 =
 
